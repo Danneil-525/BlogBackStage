@@ -2,6 +2,7 @@ import React from 'react'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import Login from '../Login'
 import Admin from '../Admin'
+import AddArticle from '../AddArticle'
 
 import './index.css'
 function Main() {

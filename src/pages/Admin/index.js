@@ -1,20 +1,22 @@
 import { Layout, Menu, Breadcrumb, Image } from 'antd';
 import { PieChartOutlined, DesktopOutlined, UserOutlined } from '@ant-design/icons';
 import headPic from './head.jpg'
-import './index.module.scss'
+import styles from './index.module.scss'
+import { Route } from "react-router-dom";
+import AddArticle from '../AddArticle'
 const { SubMenu } = Menu;
 const { Header, Content, Sider } = Layout;
 
 function Admin() {
   return (
     <Layout style={{ height: '100%' }}>
-      <Header className="header">
-        <div className="logo">
+      <Header className={styles["header"]}>
+        <div className={styles["logo"]}>
           <Image src={headPic} width={60} height={60} alt=""></Image>
         </div>
       </Header>
       <Layout>
-        <Sider width={200} className="site-layout-background">
+        <Sider width={200} className={styles["site-layout-background"]}>
           <Menu
             mode="inline"
             defaultSelectedKeys={['1']}
@@ -41,14 +43,16 @@ function Admin() {
             <Breadcrumb.Item>工作台</Breadcrumb.Item>
           </Breadcrumb>
           <Content
-            className="site-layout-background"
+            className={styles["site-layout-background"]}
             style={{
               padding: 24,
               margin: 0,
               minHeight: 280,
             }}
           >
-            Content
+            <div>
+              <Route path="/index/" component={AddArticle} />
+            </div>
           </Content>
         </Layout>
       </Layout>
