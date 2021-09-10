@@ -4,10 +4,20 @@ import headPic from './head.jpg'
 import styles from './index.module.scss'
 import { Route } from "react-router-dom";
 import AddArticle from '../AddArticle'
+import AddArticleList from '../AddArticleList';
 const { SubMenu } = Menu;
 const { Header, Content, Sider } = Layout;
 
-function Admin() {
+function Admin(props) {
+
+  const handleClickArticle = e => {
+    console.log(e.key);
+    if (e.key === 'addArticle') {
+      props.history.push('/index/add')
+    } else {
+      props.history.push('/index/list')
+    }
+  }
   return (
     <Layout style={{ height: '100%' }}>
       <Header className={styles["header"]}>
@@ -21,16 +31,14 @@ function Admin() {
             mode="inline"
             defaultSelectedKeys={['1']}
             style={{ height: '100%', borderRight: 0 }}
+
           >
             <Menu.Item key="sub1" icon={<PieChartOutlined />}>
               工作台
             </Menu.Item>
-            <Menu.Item key="sub2" icon={<DesktopOutlined />} >
-              添加文章
-            </Menu.Item>
-            <SubMenu key="sub3" icon={<UserOutlined />} title="文章管理">
-              <Menu.Item key="9">添加文章</Menu.Item>
-              <Menu.Item key="10">添加列表</Menu.Item>
+            <SubMenu key="sub3" icon={<UserOutlined />} onClick={handleClickArticle} title="文章管理">
+              <Menu.Item key="addArticle">添加文章</Menu.Item>
+              <Menu.Item key="articleList">添加列表</Menu.Item>
             </SubMenu>
             <Menu.Item key="sub5" icon={<DesktopOutlined />} >
               留言管理
@@ -50,9 +58,12 @@ function Admin() {
               minHeight: 280,
             }}
           >
-            <div>
-              <Route path="/index/" component={AddArticle} />
+            <div style={{ height: '100%' }}>
+              <Route path="/" exact component={AddArticle} />
+              <Route path="/index/add/" exact component={AddArticle} />
+              <Route path="/index/list/" exact component={AddArticleList} />
             </div>
+
           </Content>
         </Layout>
       </Layout>
